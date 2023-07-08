@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import * as LR from "@uploadcare/blocks";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
 import Image from "next/image";
@@ -11,6 +11,8 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
   const dataOutputRef = useRef<LR.DataOutput>();
   // TODO: We need to export all data output types
   const [files, setFiles] = useState<any[]>([]);
+  //   This is to make sure that each uploader instance doesn't clash with the other
+  const uniqueClass = useMemo(() => `uploaderCfg-${Math.random().toString(36).slice(2)}`, []);
 
   console.log({ files });
   // TODO: We need to export all the event types
@@ -31,8 +33,8 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
 
   return (
     <div className="flex flex-col space-y-8 p-8">
-      <lr-file-uploader-regular class="uploaderCfg" css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}>
-        <lr-data-output ref={dataOutputRef} use-event hidden class="uploaderCfg" onEvent={handleUploaderEvent}></lr-data-output>
+      <lr-file-uploader-regular class={uniqueClass} css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}>
+        <lr-data-output ref={dataOutputRef} use-event hidden class={uniqueClass} onEvent={handleUploaderEvent}></lr-data-output>
       </lr-file-uploader-regular>
 
       <div className={"grid gap-2 grid-cols-autoFitMin200pxMax1fr w-full max-w-4xl"}>
@@ -48,7 +50,7 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
         ))}
       </div>
       <style jsx global>{`
-        .uploaderCfg {
+        .${uniqueClass} {
           ${createUploadCareConfig({
             pubkey: "4a193e597cec18c6877b",
             sourceList: ["local", "url"],

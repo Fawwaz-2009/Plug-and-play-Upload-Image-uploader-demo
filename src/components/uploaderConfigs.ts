@@ -2,6 +2,7 @@ import { Locales, locals } from "./locals";
 
 export type UploadCareConfig = {
   pubkey: string;
+  name?: string;
   imgOnly?: 1 | 0;
   multiple?: 1 | 0;
   maxLocalFileSizeBytes?: number;
@@ -13,6 +14,7 @@ export type UploadCareConfig = {
 
 const defaultUploadCareConfigs = {
   pubkey: "demopublickey",
+  name: "uploader",
   imgOnly: 1,
   multiple: 1,
   maxLocalFileSizeBytes: 10000000,
@@ -23,11 +25,14 @@ const defaultUploadCareConfigs = {
 } satisfies UploadCareConfig;
 
 export function createUploadCareConfig(config: UploadCareConfig) {
-  const { pubkey, imgOnly, multiple, maxLocalFileSizeBytes, useCloudImageEditor, sourceList, darkmode, locale } = { ...defaultUploadCareConfigs, ...config };
+  const { pubkey, imgOnly, multiple, maxLocalFileSizeBytes, useCloudImageEditor, sourceList, darkmode, locale, name } = {
+    ...defaultUploadCareConfigs,
+    ...config,
+  };
   const sourceListString = sourceList.join(", ");
 
   return `
-        --ctx-name: "uploader";
+        --ctx-name: "${name}";
         --cfg-pubkey: "${pubkey}";
         --cfg-img-only: ${imgOnly};
         --cfg-multiple: ${multiple};
