@@ -1,9 +1,8 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import * as LR from "@uploadcare/blocks";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
-import Image from "next/image";
-import { uploadcareLoader } from "@uploadcare/nextjs-loader";
 import { UploadCareConfig, createUploadCareConfig } from "./uploaderConfigs";
+import UploadCareImage from "./uploadCareImage";
 
 LR.registerBlocks(LR);
 
@@ -39,14 +38,7 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
 
       <div className={"grid gap-2 grid-cols-autoFitMin200pxMax1fr w-full max-w-4xl"}>
         {files.map((file) => (
-          <Image
-            key={file.uuid}
-            src={`https://ucarecdn.com/${file.uuid}/${file.cdnUrlModifiers || ""}-/preview/-/scale_crop/400x400/`}
-            width="200"
-            height="200"
-            alt="Preview"
-            loader={uploadcareLoader}
-          />
+          <UploadCareImage key={file.uuid} src={file.cdnUrl} width="200" height="200" alt="Preview" />
         ))}
       </div>
       <style jsx global>{`
