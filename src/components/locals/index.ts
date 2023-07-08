@@ -203,7 +203,7 @@ export const locals: Record<Locales, string> = {
     --l10n-files-count-limit-error-too-few: "لقد اخترت {{total}}. مطلوب على الأقل {{min}}.";
     --l10n-files-count-limit-error-too-many: "لقد اخترت العديد من الملفات. {{max}} هو الحد الأقصى.";
   
-    --l10n-files-max-size-limit-error: "الملف كبير جدًا. الحد الأقصى لحجم الملف هو {{maxFileSize}} بتات.";
+    --l10n-files-max-size-limit-error: "الملف كبير جدًا. الحد الأقصى لحجم الملف هو {{maxFileSize}} بايت.";
     --l10n-has-validation-errors: "حدث خطأ في التحقق من صحة الملف. يرجى التحقق من ملفاتك قبل الرفع.";
     --l10n-images-only-accepted: "يتم قبول ملفات الصور فقط.";
     --l10n-file-type-not-allowed: "لا يُسمح برفع هذه الأنواع من الملفات.";
