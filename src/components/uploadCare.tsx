@@ -3,12 +3,11 @@ import * as LR from "@uploadcare/blocks";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
 import Image from "next/image";
 import { uploadcareLoader } from "@uploadcare/nextjs-loader";
-import { createUploadCareConfig } from "./uploaderConfigs";
-import { Locales } from "./locals";
+import { UploadCareConfig, createUploadCareConfig } from "./uploaderConfigs";
 
 LR.registerBlocks(LR);
 
-const Uploader: React.FC<UploaderProps> = ({ locale }) => {
+const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
   const dataOutputRef = useRef<LR.DataOutput>();
   // TODO: We need to export all data output types
   const [files, setFiles] = useState<any[]>([]);
@@ -53,7 +52,8 @@ const Uploader: React.FC<UploaderProps> = ({ locale }) => {
           ${createUploadCareConfig({
             pubkey: "4a193e597cec18c6877b",
             sourceList: ["local", "url"],
-            locale: locale || "en",
+            locale: "en",
+            ...configsOverrides,
           })}
         }
       `}</style>
@@ -62,7 +62,7 @@ const Uploader: React.FC<UploaderProps> = ({ locale }) => {
 };
 
 interface UploaderProps {
-  locale?: Locales;
+  configsOverrides?: Partial<UploadCareConfig>;
 }
 
 export default Uploader;

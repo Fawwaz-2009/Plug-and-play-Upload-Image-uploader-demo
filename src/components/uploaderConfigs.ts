@@ -1,6 +1,6 @@
 import { Locales, locals } from "./locals";
 
-type UploadCareConfig = {
+export type UploadCareConfig = {
   pubkey: string;
   imgOnly?: 1 | 0;
   multiple?: 1 | 0;

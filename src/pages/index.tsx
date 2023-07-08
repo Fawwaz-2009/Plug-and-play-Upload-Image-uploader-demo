@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}>
       <h1 className="text-white text-center text-4xl">Upload Care test</h1>
-      <UploadCare />
+      <UploadCare configsOverrides={{ locale: "ar" }} />
     </main>
   );
 }
