@@ -6,19 +6,20 @@ import UploadCareImage from "./uploadCareImage";
 
 LR.registerBlocks(LR);
 
-const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
+const Uploader: React.FC<UploaderProps> = ({ configsOverrides, setFiles }) => {
   const dataOutputRef = useRef<LR.DataOutput>();
-  // TODO: We need to export all data output types
-  const [files, setFiles] = useState<any[]>([]);
+
   //   This is to make sure that each uploader instance doesn't clash with the other
   const uniqueClass = useMemo(() => `uploaderCfg-${Math.random().toString(36).slice(2)}`, []);
 
-  console.log({ files });
   // TODO: We need to export all the event types
-  const handleUploaderEvent = useCallback((e: CustomEvent<any>) => {
-    const { data } = e.detail;
-    setFiles(data);
-  }, []);
+  const handleUploaderEvent = useCallback(
+    (e: CustomEvent<{ data: UploadCareFile[] }>) => {
+      const { data } = e.detail;
+      setFiles && setFiles(data);
+    },
+    [setFiles]
+  );
 
   useEffect(() => {
     const el = dataOutputRef.current;
@@ -31,16 +32,11 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
   }, [handleUploaderEvent]);
 
   return (
-    <div className="flex flex-col space-y-8 p-8">
+    <div className="">
       <lr-file-uploader-regular class={uniqueClass} css-src={`https://unpkg.com/@uploadcare/blocks@${PACKAGE_VERSION}/web/file-uploader-regular.min.css`}>
         <lr-data-output ref={dataOutputRef} use-event hidden class={uniqueClass} onEvent={handleUploaderEvent}></lr-data-output>
       </lr-file-uploader-regular>
 
-      <div className={"grid gap-2 grid-cols-autoFitMin200pxMax1fr w-full max-w-4xl"}>
-        {files.map((file) => (
-          <UploadCareImage key={file.uuid} src={file.cdnUrl} width="200" height="200" alt="Preview" />
-        ))}
-      </div>
       <style jsx global>{`
         .${uniqueClass} {
           ${createUploadCareConfig({
@@ -57,6 +53,34 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides }) => {
 
 interface UploaderProps {
   configsOverrides?: Partial<UploadCareConfig>;
+  setFiles?: (files: UploadCareFile[]) => void;
+}
+
+export interface UploadCareFile {
+  uuid: string;
+  name: string;
+  size: number;
+  mimeType: string;
+  cdnUrl: string;
+  originalFilename: string;
+  contentInfo: {
+    mime: {
+      mime: string;
+      type: string;
+      subtype: string;
+    };
+    image: {
+      dpi: null;
+      width: number;
+      format: string;
+      height: number;
+      sequence: boolean;
+      colorMode: string;
+      orientation: null;
+      geoLocation: null;
+      datetimeOriginal: null;
+    };
+  };
 }
 
 export default Uploader;
