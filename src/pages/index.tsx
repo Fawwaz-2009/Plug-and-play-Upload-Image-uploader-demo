@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
-import UploadCare, { UploadCareFile } from "@/components/uploader/uploadCare";
+import UploadCare from "@/components/uploader/uploadCare";
 import { useState } from "react";
 import UploadCareImage from "@/components/uploader/uploadCareImage";
+import { UploadCareFile } from "@/components/uploader/types";
 
 const inter = Inter({ subsets: ["latin"] });
 

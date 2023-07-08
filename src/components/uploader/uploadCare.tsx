@@ -1,8 +1,9 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import * as LR from "@uploadcare/blocks";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
-import { UploadCareConfig, createUploadCareConfig } from "./uploaderConfigs";
+import { createUploadCareConfig } from "./uploaderConfigs";
 import UploadCareImage from "./uploadCareImage";
+import { UploadCareConfig, UploadCareFile } from "./types";
 
 LR.registerBlocks(LR);
 
@@ -56,31 +57,5 @@ interface UploaderProps {
   setFiles?: (files: UploadCareFile[]) => void;
 }
 
-export interface UploadCareFile {
-  uuid: string;
-  name: string;
-  size: number;
-  mimeType: string;
-  cdnUrl: string;
-  originalFilename: string;
-  contentInfo: {
-    mime: {
-      mime: string;
-      type: string;
-      subtype: string;
-    };
-    image: {
-      dpi: null;
-      width: number;
-      format: string;
-      height: number;
-      sequence: boolean;
-      colorMode: string;
-      orientation: null;
-      geoLocation: null;
-      datetimeOriginal: null;
-    };
-  };
-}
 
 export default Uploader;

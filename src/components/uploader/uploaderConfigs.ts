@@ -1,16 +1,5 @@
-import { Locales, locals } from "./locals";
-
-export type UploadCareConfig = {
-  pubkey: string;
-  name?: string;
-  imgOnly?: 1 | 0;
-  multiple?: 1 | 0;
-  maxLocalFileSizeBytes?: number;
-  useCloudImageEditor?: 1 | 0;
-  sourceList: ("local" | "url" | "camera" | "dropbox" | "facebook" | "gdrive" | "gphotos" | "instagram")[];
-  darkmode?: 0;
-  locale?: Locales;
-};
+import { locals } from "./locals";
+import { UploadCareConfig } from "./types";
 
 const defaultUploadCareConfigs = {
   pubkey: "demopublickey",

@@ -1,4 +1,5 @@
-export type Locales = "en" | "ar";
+import { Locales } from "../types";
+
 export const locals: Record<Locales, string> = {
   en: `
 --l10n-locale-name: "en-US";
