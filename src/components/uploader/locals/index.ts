@@ -105,7 +105,7 @@ export const locals: Record<Locales, string> = {
 --l10n-file-type-not-allowed: "Uploading of these file types is not allowed.";
     `,
   ar: `
-    --l10n-locale-name: "ar-EG";
+    --l10n-locale-name: "ar-SA";
     --l10n-upload-file: "رفع الملف";
     --l10n-upload-files: "رفع الملفات";
     --l10n-choose-file: "اختر الملف";
