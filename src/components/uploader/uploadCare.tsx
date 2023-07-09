@@ -1,8 +1,7 @@
-import { useState, useCallback, useRef, useEffect, useMemo } from "react";
+import { useCallback, useRef, useEffect, useMemo } from "react";
 import * as LR from "@uploadcare/blocks";
 import { PACKAGE_VERSION } from "@uploadcare/blocks/env";
 import { createUploadCareConfig } from "./uploaderConfigs";
-import UploadCareImage from "./uploadCareImage";
 import { UploadCareConfig, UploadCareFile } from "./types";
 
 LR.registerBlocks(LR);
@@ -56,6 +55,5 @@ interface UploaderProps {
   configsOverrides?: Partial<UploadCareConfig>;
   setFiles?: (files: UploadCareFile[]) => void;
 }
-
 
 export default Uploader;

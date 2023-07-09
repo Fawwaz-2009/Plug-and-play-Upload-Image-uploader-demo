@@ -10,7 +10,7 @@ export default function Home() {
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 ">Plug and play file uploader implementation with UploadCare</h1>
             <div className="mb-8 flex justify-center">
               <div className="relative rounded-full px-3 py-1 text-sm  my-8 leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                <a href="#" className="font-semibold text-indigo-600">
+                <a href="https://github.com/Fawwaz-2009/Plug-and-play-Upload-Image-uploader-demo" className="font-semibold text-indigo-600">
                   <span className="absolute inset-0" aria-hidden="true" />
                   See the code in Github <span aria-hidden="true">&rarr;</span>
                 </a>
