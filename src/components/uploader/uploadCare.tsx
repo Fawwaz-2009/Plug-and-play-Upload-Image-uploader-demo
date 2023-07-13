@@ -40,7 +40,7 @@ const Uploader: React.FC<UploaderProps> = ({ configsOverrides, setFiles }) => {
       <style jsx global>{`
         .${uniqueClass} {
           ${createUploadCareConfig({
-            pubkey: "4a193e597cec18c6877b",
+            pubkey: "demopublickey",
             sourceList: ["local", "url"],
             locale: "en",
             ...configsOverrides,
